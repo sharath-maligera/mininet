@@ -9,4 +9,8 @@
 - On the mininet prompt use the command dump to see the details of the network created.<br/>
 ``` mininet> dump```
 
+- To shutdown controller which is running on port 6633 ``` $ sudo fuser -k 6633/tcp```<br/>
+
+
+
 
