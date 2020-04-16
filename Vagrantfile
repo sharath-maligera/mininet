@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     switch_config.vm.hostname = "switch"
     switch_config.hostmanager.aliases = "switch"
     switch_config.vm.provider :virtualbox do |v|
-      v.gui = true
+      #v.gui = true
       v.customize ["modifyvm", :id, "--name", "switch"]
       v.customize ["modifyvm", :id, "--memory", 1024.to_s]
       v.customize ["modifyvm", :id, "--cpus", 1.to_s]
