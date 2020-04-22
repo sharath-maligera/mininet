@@ -97,7 +97,7 @@ def initialize_iperf(client=None, server=None, server_op_file_name=None, client_
         # -u : Telling iPerf to generate UDP packets
         # -l : The length of UDP data payload in bytes
         if UDP:
-            client.cmd('iperf3 -c ' + str(server.IP()) + ' -u  -f 2.4K -t 100 -i 1 -J > '+ client_op_file_name +' &')
+            client.cmd('iperf3 -c ' + str(server.IP()) + ' -u -t 100 -i 1 -J > '+ client_op_file_name +' &')
         else:
             client.cmd('iperf3 -c ' + str(server.IP()) + ' -t 100 -i 1 -J > '+ client_op_file_name +' &')
         sleep(1)
