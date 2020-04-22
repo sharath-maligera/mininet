@@ -5,9 +5,10 @@
 
 ![image info](./images/UDP.jpg)
 
-### Server side:
+### Experiment - 1
+#### Server side:
 ```console
-Cvagrant@switch:~$ iperf -s -u -l 1248b -f K -w 64k -i 1
+vagrant@switch:~$ iperf -s -u -l 1248b -f K -w 64k -i 1
 ------------------------------------------------------------
 Server listening on UDP port 5001
 Receiving 1248 byte datagrams
@@ -33,3 +34,22 @@ UDP buffer size:  128 KByte (WARNING: requested 64.0 KByte)
 ``` -f K ``` – report bandwidth in KBytes.<br/>
 ``` -w 64k ``` – Sets the socket buffer sizes to the specified value. For TCP, this sets the TCP window size. For UDP it is just the buffer which datagrams are received in, and so limits the largest receivable datagram size. Here we are requesting 64KByte but Linux, in it's infinite wisdom, gives us twice what we ask for. Maybe this is to accommodate two way bandwidth testing feature in iPerf2.<br/>
 ``` -i 1 ``` – Sets the interval time in seconds between periodic bandwidth, jitter, and loss reports.<br/>
+
+#### Client side:
+```console
+vagrant@controller:~$ iperf -c 192.168.1.102 -u -l 1248b -f K -b 160K -w 64k -t 100
+------------------------------------------------------------
+Client connecting to 192.168.1.102, UDP port 5001
+Sending 1248 byte datagrams, IPG target: 62400.00 us (kalman adjust)
+UDP buffer size:  128 KByte (WARNING: requested 64.0 KByte)
+------------------------------------------------------------
+[  3] local 192.168.1.103 port 50083 connected with 192.168.1.102 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-100.1 sec  1955 KBytes  19.5 KBytes/sec
+[  3] Sent 1604 datagrams
+[  3] Server Report:
+[  3]  0.0-100.1 sec  1955 KBytes  19.5 KBytes/sec   0.256 ms    0/ 1604 (0%)
+```
+
+``` -b 160 Kbits(20 KBytes)``` - The UDP bandwidth to send at 20 KBytes/sec. The reason to choose 20 KBytes is to effectively test the UDP connection (radio supports upto 9.6 KBytes), the client should be specified to send at a higher throughput than believed that the network has available.<br/>
+``` -t 100 ``` - Send UDP datagram for 100 seconds.
