@@ -181,3 +181,13 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
 [  3] Server Report:
 [  3] 0.00-25.01 sec   490 KBytes  19.6 KBytes/sec   0.089 ms    0/  426 (0%) -/-/-/- ms   17 pps
 ```
+
+| ![IPG.jpg](./images/IPG.jpg) | 
+|:--:| 
+| *Credits: Bob McMahon, Broadcom* |
+
+
+### Dependencies
+- ***vagrant mininet box*** - ```Debian-8``` ```mininet version - 2.3.0``` ```iperf version 2.0.5 (08 Jul 2010)``` - no command line option for IPG<br/>
+- ***OpenDayLightController*** - required  ```JDK-8 so Debian-9``` ```JDK-8 not available in stable Debian-10 version only JDK 11``` ```mininet version - 2.2.1``` ```iperf version 2.0.9``` - no command line option for IPG, it's only available from 2.0.10<br/>
+- ***vagrant Debian 10 box*** -  ```mininet version - 2.2.2``` ```iperf version 2.0.12 (25 June 2018)``` - command line option available for ```--isochronous``` and ```--ipg```
