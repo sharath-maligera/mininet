@@ -212,7 +212,7 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
     * ```0``` :  Datagram loss
     * | ![udp_120s_igp5ms_constant9.6KBps.png](./images/udp_120s_igp5ms_constant9.6KBps.png) | 
       |:--:| 
-      |  |
+      | *9.6KBps* |
       
 - ***Experiment 4.2*** - During this experiment, the bandwidth between mininet hosts was changed from 9.6 KBytes/sec to 4.8 KBytes/sec for every 20 seconds alternatively. 
 * ***iPerf experiment*** :
@@ -221,7 +221,7 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
     * ```0``` :  Datagram loss
     * | ![udp_120s_igp5ms_constant9.6KBps.png](./images/udp_120s_igp5ms_9.6_4.8.png) | 
       |:--:| 
-      |  |
+      | *9.6 and 4.8* |
       
 - ***Experiment 4.3*** - During this experiment, the bandwidth between mininet hosts was changed from 9.6 KBytes/sec to 4.8 KBytes/sec to 2.4 KBytes/sec to 1.2 KBytes/sec to 0.6 KBytes/sec for every 240 seconds. 
 * ***iPerf experiment*** :
@@ -230,4 +230,4 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
     * ```Datagram loss``` :  Need to investigate
     * | ![udp_1200s_igp5_all_poss_data_rates.png](./images/udp_1200s_igp5_all_poss_data_rates.png) | 
       |:--:| 
-      |  |
+      | *all_poss_data_rates* |
