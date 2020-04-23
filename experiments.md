@@ -3,7 +3,9 @@
 ## iPerf2 experiments:
 - Experiment to test UDP throughput between hosts.<br/>
 
-![image info](./images/UDP.jpg)
+| ![image info](./images/UDP.jpg) | 
+|:--:| 
+| *iPerf2 UDP throughput test* |
 
 ### Experiment - 1
 #### Server side:
