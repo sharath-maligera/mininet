@@ -132,56 +132,56 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
 ```console
 vagrant@server:~$ iperf -s -u -l 1248b -f K -w 65k -i 5 -e -t 1250
 ------------------------------------------------------------
-Server listening on UDP port 5001 with pid 12228
+Server listening on UDP port 5001 with pid 3857
 Receiving 1248 byte datagrams
 UDP buffer size:  127 KByte (WARNING: requested 63.5 KByte)
 ------------------------------------------------------------
-[  3] local 192.168.1.108 port 5001 connected with 192.168.1.107 port 46359 isoch (peer 2.0.12-alpha)
+[  3] local 192.168.1.108 port 5001 connected with 192.168.1.107 port 48315 isoch (peer 2.0.12-alpha)
 [ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total  Latency avg/min/max/stdev PPS Frames/Lost
-[  3] 0.00-5.00 sec  1.22 KBytes  0.24 KBytes/sec   0.000 ms    0/    1 (0%) -0.085/-0.085/-0.085/ 0.000 ms    0 pps   1/0
-[  3] 5.00-10.00 sec  2.44 KBytes  0.49 KBytes/sec   0.002 ms    0/    2 (0%) -0.163/-0.124/-0.085/ 0.006 ms    0 pps   0/0
-[  3] 10.00-15.00 sec  2.44 KBytes  0.49 KBytes/sec   0.003 ms    0/    2 (0%) -0.169/-0.124/-0.106/ 0.001 ms    0 pps   0/0
-[  3] 15.00-20.00 sec  1.22 KBytes  0.24 KBytes/sec   0.004 ms    0/    1 (0%) -0.197/-0.106/-0.091/ 0.000 ms    0 pps   0/0
-[  3] 20.00-25.00 sec  2.44 KBytes  0.49 KBytes/sec   0.005 ms    0/    2 (0%) -0.159/-0.116/-0.091/ 0.004 ms    0 pps   0/0
-[  3] 25.00-30.00 sec  2.44 KBytes  0.49 KBytes/sec   0.009 ms    0/    2 (0%) -0.181/-0.145/-0.101/ 0.031 ms    0 pps   0/0
-[  3] 30.00-35.00 sec  1.22 KBytes  0.24 KBytes/sec   0.010 ms    0/    1 (0%) -0.228/-0.127/-0.101/ 0.000 ms    0 pps   0/0
-[  3] 35.00-40.00 sec  2.44 KBytes  0.49 KBytes/sec   0.009 ms    0/    2 (0%) -0.182/-0.127/-0.117/ 0.002 ms    0 pps   0/0
-[  3] 40.00-45.00 sec  2.44 KBytes  0.49 KBytes/sec   0.012 ms    0/    2 (0%) -0.165/-0.125/-0.088/ 0.026 ms    0 pps   0/0
-[  3] 45.00-50.00 sec  0.04 KBytes  0.01 KBytes/sec   0.012 ms    0/    1 (0%) -0.236/-0.125/-0.111/ 0.000 ms    0 pps   0/0
-[  3] 50.00-55.00 sec  1.22 KBytes  0.24 KBytes/sec   0.013 ms    0/    1 (0%) -0.094/-0.094/ 0.000/ 0.000 ms    0 pps   1/0
-[  3] 55.00-60.00 sec  2.44 KBytes  0.49 KBytes/sec   0.017 ms    0/    2 (0%) -0.164/-0.155/-0.078/ 0.054 ms    0 pps   0/0
+[  3] 0.00-5.00 sec  2.44 KBytes  0.49 KBytes/sec   0.002 ms    0/    2 (0%)  0.043/ 0.023/ 0.063/ 0.036 ms    0 pps   1/0
+[  3] 5.00-10.00 sec  1.22 KBytes  0.24 KBytes/sec   0.004 ms    0/    1 (0%)  0.029/ 0.029/ 0.029/ 0.000 ms    0 pps   0/0
+[  3] 10.00-15.00 sec  2.44 KBytes  0.49 KBytes/sec   0.006 ms    0/    2 (0%)  0.065/ 0.029/ 0.069/ 0.025 ms    0 pps   0/0
+[  3] 15.00-20.00 sec  2.44 KBytes  0.49 KBytes/sec   0.009 ms    0/    2 (0%)  0.087/ 0.030/ 0.074/ 0.031 ms    0 pps   0/0
+[  3] 20.00-25.00 sec  1.22 KBytes  0.24 KBytes/sec   0.012 ms    0/    1 (0%)  0.087/ 0.087/ 0.087/ 0.000 ms    0 pps   0/0
+[  3] 25.00-30.00 sec  2.44 KBytes  0.49 KBytes/sec   0.015 ms    0/    2 (0%)  0.088/ 0.006/ 0.087/ 0.055 ms    0 pps   0/0
+[  3] 30.00-35.00 sec  2.44 KBytes  0.49 KBytes/sec   0.021 ms    0/    2 (0%)  0.079/ 0.006/ 0.092/ 0.023 ms    0 pps   0/0
+[  3] 35.00-40.00 sec  1.22 KBytes  0.24 KBytes/sec   0.023 ms    0/    1 (0%)  0.002/ 0.002/ 0.002/ 0.000 ms    0 pps   0/0
+[  3] 40.00-45.00 sec  2.44 KBytes  0.49 KBytes/sec   0.025 ms    0/    2 (0%)  0.058/ 0.002/ 0.083/ 0.037 ms    0 pps   0/0
+[  3] 45.00-50.00 sec  0.04 KBytes  0.01 KBytes/sec   0.025 ms    0/    1 (0%)  0.135/ 0.052/ 0.083/ 0.000 ms    0 pps   0/0
+[  3] 50.00-55.00 sec  1.22 KBytes  0.24 KBytes/sec   0.028 ms    0/    1 (0%)  0.164/ 0.052/ 0.112/ 0.000 ms    0 pps   1/0
+[  3] 55.00-60.00 sec  2.44 KBytes  0.49 KBytes/sec   0.027 ms    0/    2 (0%)  0.131/ 0.071/ 0.112/ 0.006 ms    0 pps   0/0
                                             .
                                             .
                                             .
-[  3] 1195.00-1200.00 sec  2.44 KBytes  0.49 KBytes/sec   0.033 ms    0/    2 (0%) -0.150/-0.145/-0.056/ 0.063 ms    0 pps   0/0
-[  3] 1200.00-1205.00 sec  1.22 KBytes  0.24 KBytes/sec   0.034 ms    0/    1 (0%) -0.164/-0.108/-0.056/ 0.000 ms    0 pps   0/0
-[  3] 1205.00-1210.00 sec  2.44 KBytes  0.49 KBytes/sec   0.032 ms    0/    2 (0%) -0.190/-0.139/-0.108/ 0.004 ms    0 pps   0/0
-[  3] 1210.00-1215.00 sec  2.44 KBytes  0.49 KBytes/sec   0.031 ms    0/    2 (0%) -0.167/-0.134/-0.091/ 0.013 ms    0 pps   0/0
-[  3] 1215.00-1220.00 sec  1.22 KBytes  0.24 KBytes/sec   0.029 ms    0/    1 (0%) -0.180/-0.091/-0.089/ 0.000 ms    0 pps   0/0
-[  3] 1220.00-1225.00 sec  2.44 KBytes  0.49 KBytes/sec   0.031 ms    0/    2 (0%) -0.158/-0.137/-0.089/ 0.033 ms    0 pps   0/0
-[  3] 1225.00-1230.00 sec  2.44 KBytes  0.49 KBytes/sec   0.028 ms    0/    2 (0%) -0.144/-0.104/-0.090/ 0.007 ms    0 pps   0/0
-[  3] 1230.00-1235.00 sec  1.22 KBytes  0.24 KBytes/sec   0.030 ms    0/    1 (0%) -0.259/-0.155/-0.104/ 0.000 ms    0 pps   0/0
-[  3] 1235.00-1240.00 sec  0.04 KBytes  0.01 KBytes/sec   0.028 ms    0/    1 (0%) -0.305/-0.155/-0.150/ 0.000 ms    0 pps   0/0
-[  3] 1240.00-1245.00 sec  2.44 KBytes  0.49 KBytes/sec   0.027 ms    0/    2 (0%) -0.200/-0.150/-0.108/ 0.024 ms    0 pps   1/0
-[  3] 1245.00-1250.00 sec  1.22 KBytes  0.24 KBytes/sec   0.028 ms    0/    1 (0%) -0.179/-0.108/-0.071/ 0.000 ms    0 pps   0/0
-[  3] 0.00-1250.47 sec   452 KBytes  0.36 KBytes/sec   0.000 ms    0/  393 (0%) -/-/-/- ms    0 pps
-
+[  3] 1190.00-1195.00 sec  1.22 KBytes  0.24 KBytes/sec   0.035 ms    0/    1 (0%)  0.027/ 0.027/ 0.027/ 0.000 ms    0 pps   0/0
+[  3] 1195.00-1200.00 sec  2.44 KBytes  0.49 KBytes/sec   0.033 ms    0/    2 (0%)  0.072/ 0.027/ 0.061/ 0.003 ms    0 pps   0/0
+[  3] 1200.00-1205.00 sec  2.44 KBytes  0.49 KBytes/sec   0.035 ms    0/    2 (0%)  0.074/ 0.009/ 0.083/ 0.052 ms    0 pps   0/0
+[  3] 1205.00-1210.00 sec  1.22 KBytes  0.24 KBytes/sec   0.038 ms    0/    1 (0%)  0.082/ 0.082/ 0.082/ 0.000 ms    0 pps   0/0
+[  3] 1210.00-1215.00 sec  2.44 KBytes  0.49 KBytes/sec   0.039 ms    0/    2 (0%)  0.081/-0.005/ 0.086/ 0.064 ms    0 pps   0/0
+[  3] 1215.00-1220.00 sec  2.44 KBytes  0.49 KBytes/sec   0.040 ms    0/    2 (0%)  0.062/-0.005/ 0.074/ 0.013 ms    0 pps   0/0
+[  3] 1220.00-1225.00 sec  1.22 KBytes  0.24 KBytes/sec   0.038 ms    0/    1 (0%)  0.056/ 0.056/ 0.056/ 0.000 ms    0 pps   0/0
+[  3] 1225.00-1230.00 sec  2.44 KBytes  0.49 KBytes/sec   0.035 ms    0/    2 (0%)  0.073/ 0.035/ 0.056/ 0.014 ms    0 pps   0/0
+[  3] 1230.00-1235.00 sec  1.26 KBytes  0.25 KBytes/sec   0.034 ms    0/    2 (0%)  0.078/ 0.036/ 0.065/ 0.021 ms    0 pps   0/0
+[  3] 1235.00-1240.00 sec  0.00 KBytes  0.00 KBytes/sec   0.000 ms    0/    0 (0%) -/-/-/- ms    0 pps
+[  3] 1240.00-1245.00 sec  2.44 KBytes  0.49 KBytes/sec   0.032 ms    0/    2 (0%)  0.056/ 0.026/ 0.049/ 0.016 ms    0 pps   1/0
+[  3] 1245.00-1250.00 sec  2.44 KBytes  0.49 KBytes/sec  187.529 ms    0/    2 (0%) 1500.096/ 0.049/3000.072/2121.321 ms    0 pps   0/0
+[  3] 0.00-1250.04 sec   453 KBytes  0.36 KBytes/sec   0.000 ms    0/  394 (0%) -/-/-/- ms    0 pps
 ```
 
 #### Client side:
 ```console
-vagrant@client:~$ iperf -c 192.168.1.108 -u -l 1248b -f K -b 160K -w 64k -t 25 -e --isochronous=1:20K,0 --ipg 5
+vagrant@client:~$ iperf -c 192.168.1.108 -u -l 1248b -f K -b 160K -w 64k -t 1250 -e --isochronous=1:20K,0 --ipg 5000
 ------------------------------------------------------------
-Client connecting to 192.168.1.108, UDP port 5001 with pid 11127
-UDP isochronous: 1 frames/sec mean= 160 Kbit/s, stddev=0.00 bit/s, Period/IPG=1000.00/5.000 ms
+Client connecting to 192.168.1.108, UDP port 5001 with pid 1275
+UDP isochronous: 1 frames/sec mean= 160 Kbit/s, stddev=0.00 bit/s, Period/IPG=1000.00/5000.000 ms
 UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
 ------------------------------------------------------------
-[  3] local 192.168.1.107 port 40908 connected with 192.168.1.108 port 5001
+[  4] local 192.168.1.107 port 48315 connected with 192.168.1.108 port 5001
 [ ID] Interval       Transfer     Bandwidth      Write/Err  PPS  frames:tx/missed/slips
-[  3] 0.00-25.01 sec   490 KBytes  19.6 KBytes/sec  426/0       17 pps   26/0/0
-[  3] Sent 426 datagrams
-[  3] Server Report:
-[  3] 0.00-25.01 sec   490 KBytes  19.6 KBytes/sec   0.089 ms    0/  426 (0%) -/-/-/- ms   17 pps
+[  4] 0.00-1250.04 sec   453 KBytes  0.36 KBytes/sec  394/0        0 pps   24/1216/23
+[  4] Sent 394 datagrams
+[  4] Server Report:
+[  4] 0.00-1250.04 sec   453 KBytes  0.36 KBytes/sec   0.000 ms    0/  394 (0%) -/-/-/- ms    0 pps
 ```
 
 | ![IPG.jpg](./images/IPG.jpg) | 
