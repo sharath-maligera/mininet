@@ -47,7 +47,7 @@ def plot_bandwidth_limit(traces, plotname, UDP):
 
             if matchObj:
                 if UDP:
-                    bw = float(matchObj.group(9))   # KiloBytes / s
+                    bw = float(matchObj.group(9)) / 8000  # KiloBytes / s
                 else:
                     bw = float(matchObj.group(9))   # KiloBytes / s
                 bw_list.append(bw)
@@ -87,8 +87,11 @@ def initialize_iperf(client=None, server=None, server_op_file_name=None, client_
         # -C : Set the congestion control algorithm
         # > : redirect standard output to file and close the file descriptor with & symbol
         if UDP:
-            server.cmd('iperf3 -s -J > ' + server_op_file_name + ' &')
+            #server.cmd('iperf3 -s -J > ' + server_op_file_name + ' &')
+            # iperf -s -u -l 1248b -f K -w 65k -i 1 -e -t 120 -y C
+            server.cmd('iperf -s -u -l 1248b -f K -w 65k -i 1 -e -t 1200 -y C > ' + server_op_file_name + ' &')
         else:
+            #server.cmd('iperf3 -s -J > ' + server_op_file_name + ' &')
             server.cmd('iperf3 -s -J > ' + server_op_file_name + ' &')
         sleep(1)
 
@@ -97,9 +100,12 @@ def initialize_iperf(client=None, server=None, server_op_file_name=None, client_
         # -u : Telling iPerf to generate UDP packets
         # -l : The length of UDP data payload in bytes
         if UDP:
-            client.cmd('iperf3 -c ' + str(server.IP()) + ' -u  -f 2.4K -t 100 -i 1 -J > '+ client_op_file_name +' &')
+            #client.cmd('iperf3 -c ' + str(server.IP()) + ' -u  -f 2.4K -t 100 -i 1 -J > '+ client_op_file_name +' &')
+            # iperf -c 192.168.1.108 -u -l 1248b -f K -b 160K -w 64k -t 120 -e --isochronous=1:20K,0 --ipg 5 -y C
+            client.cmd('iperf -c ' + str(server.IP()) + ' -u -l 1248b -f K -b 160K -w 64k -t 1200 -e --isochronous=1:20K,0 --ipg 5 -y C &')
         else:
-            client.cmd('iperf3 -c ' + str(server.IP()) + ' -t 100 -i 1 -J > '+ client_op_file_name +' &')
+            #client.cmd('iperf3 -c ' + str(server.IP()) + ' -t 100 -i 1 -J > '+ client_op_file_name +' &')
+            client.cmd('iperf3 -c ' + str(server.IP()) + ' -t 100 -i 1 -J > ' + client_op_file_name + ' &')
         sleep(1)
 
 
@@ -110,20 +116,22 @@ def change_bw_limit(client=None, initial_bw=None, target_bw=None, smooth_change=
 
         info("Setting BW Limit for Interface " + str(client_interface) + " to " + str(target_bw) + "\n")
         # change the bandwidth of link to target bandwidth
+        #client_interface.config(bw=target_bw, smooth_change=smooth_change)
         client_interface.config(bw=target_bw, smooth_change=smooth_change)
         sleep(interval)
 
         # reset bw to initial value
-        info("Resetting BW Limit for Interface " + str(client_interface) + " to " + str(initial_bw) + "\n")
-        client_interface.config(bw=initial_bw, smooth_change=smooth_change)
+        info("Resetting BW Limit for Interface " + str(client_interface) + " to " + str(0.0192) + "\n")
+        client_interface.config(bw=0.0192, smooth_change=smooth_change)
         sleep(interval)
 
-        info("Setting BW Limit for Interface " + str(client_interface) + " to " + str(target_bw) + "\n")
-        client_interface.config(bw=target_bw, smooth_change=smooth_change)
+        info("Setting BW Limit for Interface " + str(client_interface) + " to " + str(0.0096) + "\n")
+        #client_interface.config(bw=target_bw, smooth_change=smooth_change)
+        client_interface.config(bw=0.0096, smooth_change=smooth_change)
         sleep(interval)
 
-        info("Resetting BW Limit for Interface " + str(client_interface) + " to " + str(initial_bw) + "\n")
-        client_interface.config(bw=initial_bw, smooth_change=smooth_change)
+        info("Resetting BW Limit for Interface " + str(client_interface) + " to " + str(0.0048) + "\n")
+        client_interface.config(bw=0.0048, smooth_change=smooth_change)
         sleep(interval)
 
 
@@ -131,8 +139,9 @@ def change_bw_limit(client=None, initial_bw=None, target_bw=None, smooth_change=
 def main(initial_bw=None, target_bw=None, change_interval=None, server_op_file_name=None, client_op_file_name=None, plotname=None, UDP=True):
     if None not in (initial_bw, target_bw, change_interval, server_op_file_name, client_op_file_name, plotname):
         topology = StaticTopology(initial_bw)
-        ctl = RemoteController("c1", ip='192.168.1.103', port=6633)
-        net = Mininet(topo=topology, link=TCLink, controller=ctl)
+        #ctl = RemoteController("c1", ip='192.168.1.103', port=6633)
+        #net = Mininet(topo=topology, link=TCLink, controller=ctl)
+        net = Mininet(topo=topology, link=TCLink)
         net.start()
 
         print "Testing network connectivity\n"
@@ -142,26 +151,27 @@ def main(initial_bw=None, target_bw=None, change_interval=None, server_op_file_n
         info("Testing bandwidth between h1 and h2\n")
         h1, h2 = net.getNodeByName('h1', 'h2')
         sleep(5)
+        traces = []
 
         initialize_iperf(client=h1, server=h2, server_op_file_name=server_op_file_name, client_op_file_name=client_op_file_name, target_bw=target_bw, UDP=UDP)
-
+        traces.append(server_op_file_name)
         sleep(change_interval)
         change_bw_limit(client=h1, initial_bw=initial_bw, target_bw=target_bw, interval=change_interval)
 
         net.stop()
         sleep(5)
         os.system('sudo mn -c')
-        #plot_bandwidth_limit(traces, plotname, UDP)
+        plot_bandwidth_limit(traces, plotname, UDP)
         #plot_bandwidth_limit_from_json(server_op_file_name=server_op_file_name, client_op_file_name=server_op_file_name)
 
 
 if __name__ == '__main__':
     setLogLevel('info')
-    target_bandwidth = 0.0384 # 4.8 kBps => 0.0384 Mbit/s
-    initial_bandwidth =0.0768 # 9.6 kBps => 0.0768 Mbit/s
-    change_interval = 20 # in seconds
-    server_op_file_name = 'iperf_server_udp.json'
-    client_op_file_name = 'iperf_client_udp.json'
-    plotname = 'throughput_tcp.png'
+    target_bandwidth = 0.0384 # 4.8 kBps => 0.0384 Mbit/s   2.4 kBps => 0.0192 Mbit/s   0.6 kBps => 0.0048 Mbit/s
+    initial_bandwidth =0.0768 # 9.6 kBps => 0.0768 Mbit/s   1.2 kBps => 0.0096 Mbit/s
+    change_interval = 240 # in seconds
+    server_op_file_name = 'iperf_server_udp_ipg.log'
+    client_op_file_name = 'iperf_client_udp_ipg.json'
+    plotname = 'throughput_udp_ipg.png'
     UDP = True
     main(initial_bw=initial_bandwidth, target_bw=target_bandwidth, change_interval=change_interval, server_op_file_name=server_op_file_name, client_op_file_name=client_op_file_name, plotname=plotname, UDP=UDP)

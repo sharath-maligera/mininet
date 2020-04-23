@@ -184,6 +184,14 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
 [  4] 0.00-1250.04 sec   453 KBytes  0.36 KBytes/sec   0.000 ms    0/  394 (0%) -/-/-/- ms    0 pps
 ```
 
+####Iperf outputs defined
+#####Frames/Bursts
+- ***TX frame count*** = Total count of frames sent
+- ***Frame slip*** = Client missed sending at the frame/burst interval
+- ***Frame miss*** = Total count of frame misses
+- ***Rx frame count*** = Total count of frames received
+- ***Frame lost*** = Frames sent on client but not received by server
+
 | ![IPG.jpg](./images/IPG.jpg) | 
 |:--:| 
 | *Credits: Bob McMahon, Broadcom* |
@@ -193,3 +201,33 @@ UDP buffer size:  125 KByte (WARNING: requested 62.5 KByte)
 - ***vagrant mininet box*** - ```Debian-8``` ```mininet version - 2.3.0``` ```iperf version 2.0.5 (08 Jul 2010)``` - no command line option for IPG<br/>
 - ***OpenDayLightController*** - required  ```JDK-8 so Debian-9``` ```JDK-8 not available in stable Debian-10 version only JDK 11``` ```mininet version - 2.2.1``` ```iperf version 2.0.9``` - no command line option for IPG, it's only available from 2.0.10<br/>
 - ***vagrant Debian 10 box*** -  ```mininet version - 2.2.2``` ```iperf version 2.0.12 (25 June 2018)``` - command line option available for ```--isochronous``` and ```--ipg```
+
+### Experiment - 4
+#### Run time bandwidth change among mininet hosts
+
+- ***Experiment 4.1*** - During this experiment, the bandwidth between mininet hosts was changed to a constant data rate of 9.6 KBytes/sec for every 20 seconds. 
+* ***iPerf experiment*** :
+    * ```Client``` : ```iperf -c 192.168.1.108 -u -l 1248b -f K -b 160K -w 64k -t 120 -e --isochronous=1:20K,0 --ipg 5 -y C``` - inter packet gap of 5 milliseconds.
+    * ```Server``` : ```iperf -s -u -l 1248b -f K -w 65k -i 1 -e -t 120 -y C``` - UDP traffic was generated for 120 seconds, while server reporting for every second.
+    * ```0``` :  Datagram loss
+    * | ![udp_120s_igp5ms_constant9.6KBps.png](./images/udp_120s_igp5ms_constant9.6KBps.png) | 
+      |:--:| 
+      |  |
+      
+- ***Experiment 4.2*** - During this experiment, the bandwidth between mininet hosts was changed from 9.6 KBytes/sec to 4.8 KBytes/sec for every 20 seconds alternatively. 
+* ***iPerf experiment*** :
+    * ```Client``` : ```iperf -c 192.168.1.108 -u -l 1248b -f K -b 160K -w 64k -t 120 -e --isochronous=1:20K,0 --ipg 5 -y C``` - inter packet gap of 5 milliseconds.
+    * ```Server``` : ```iperf -s -u -l 1248b -f K -w 65k -i 1 -e -t 120 -y C``` - UDP traffic was generated for 120 seconds, while server reporting for every second.
+    * ```0``` :  Datagram loss
+    * | ![udp_120s_igp5ms_constant9.6KBps.png](./images/udp_120s_igp5ms_9.6_4.8.png) | 
+      |:--:| 
+      |  |
+      
+- ***Experiment 4.3*** - During this experiment, the bandwidth between mininet hosts was changed from 9.6 KBytes/sec to 4.8 KBytes/sec to 2.4 KBytes/sec to 1.2 KBytes/sec to 0.6 KBytes/sec for every 240 seconds. 
+* ***iPerf experiment*** :
+    * ```Client``` : ```iperf -c 192.168.1.108 -u -l 1248b -f K -b 160K -w 64k -t 1200 -e --isochronous=1:20K,0 --ipg 5 -y C``` - inter packet gap of 5 milliseconds.
+    * ```Server``` : ```iperf -s -u -l 1248b -f K -w 65k -i 1 -e -t 1200 -y C``` - UDP traffic was generated for 1200 seconds, while server reporting for every second.
+    * ```Datagram loss``` :  Need to investigate
+    * | ![udp_1200s_igp5_all_poss_data_rates.png](./images/udp_1200s_igp5_all_poss_data_rates.png) | 
+      |:--:| 
+      |  |
